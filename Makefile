@@ -1,5 +1,4 @@
 FLTK_CONFIG = fltk-config
-#FLTK_CONFIG = /home/vuolasah/ele/koulu/dippa/pcsofta/fltkinst/bin/fltk-config
 
 CXX      = $(shell $(FLTK_CONFIG) --cxx)
 DEBUG    = -g
