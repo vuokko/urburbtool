@@ -1,0 +1,68 @@
+# data file for the Fltk User Interface Designer (fluid)
+# This file is part of the Urb Urb tool.
+#
+# Copyright (C) 2015 Hannu Vuolasaho <vuokkosetae@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+version 1.0303
+header_name {.h}
+code_name {.cxx}
+decl {\#include <FL/Fl_Double_Window.H>} {public global
+}
+
+decl {\#include "logic.h"} {
+  comment {Include callbacks and other functions.} private global
+}
+
+decl {\#include "hexbrowser.h"} {
+  comment {Hex browser widget} public global
+}
+
+widget_class UserInterface {
+  label {URB URB Tool} open
+  xywh {4124 93 700 400} type Double resizable
+  class Fl_Double_Window visible
+} {
+  Fl_Tree DeviceTree {
+    xywh {5 35 690 140}
+  }
+  Fl_Browser HexBrowser {
+    label Data
+    xywh {5 195 690 150} color 47 align 1 when 4
+    class Hex_Browser
+  }
+  Fl_Input SendInput {
+    label {Send data}
+    callback cb_SendInput
+    tooltip {Text to send a device. Sending hex data is possible with \\de\\ad\\be\\ef. For convience \\n and \\r are implemented. To send \\ use \\\\.} xywh {5 360 690 30} align 1 when 10 deactivate
+  }
+  Fl_Box TxStatus {
+    label {TX: Not set}
+    xywh {335 5 95 25} align 20
+  }
+  Fl_Box RxStatus {
+    label {RX: Not set}
+    xywh {445 5 95 25} align 20
+  }
+  Fl_Light_Button DisconnectButton {
+    label Disconnect
+    callback cb_button selected
+    xywh {545 5 150 25} selection_color 2 align 16 deactivate
+  }
+  Fl_Box Device {
+    label {Device, conf, interface not set}
+    xywh {5 5 330 25} align 20
+  }
+}
